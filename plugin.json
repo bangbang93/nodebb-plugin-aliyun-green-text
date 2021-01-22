@@ -1,0 +1,9 @@
+{
+  "id": "nodebb-plugin-aliyun-green-text",
+  "hooks": [
+    {"hook": "static:app.load", "method": "init"},
+    { "hook": "filter:post.create", "method": "onPost" }
+  ],
+  "languages": "languages",
+  "defaultLang": "en_US"
+}
