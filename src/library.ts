@@ -8,8 +8,8 @@ const winston: typeof import('winston') = require.main.require('winston')
 let request = got
 
 export async function init(): Promise<void> {
-  const accessId = nconf.get('aliGreenConfig:OSS_ACCESS_KEY_ID')
-  const accessSecret = nconf.get('aliGreenConfig:OSS_SECRET_ACCESS_KEY')
+  const accessId = nconf.get('aliGreenConfig:ACCESS_KEY_ID')
+  const accessSecret = nconf.get('aliGreenConfig:SECRET_ACCESS_KEY')
   request = got.extend({
     url: `http://green.cn-${nconf.get('aliGreenConfig:REGION')}.aliyuncs.com/green/text/scan`,
     responseType: 'json',

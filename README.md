@@ -4,8 +4,8 @@
 ```json
 {
   "aliGreenConfig": {
-    "OSS_ACCESS_KEY_ID": "OSS_ACCESS_KEY_ID",
-    "OSS_SECRET_ACCESS_KEY": "OSS_SECRET_ACCESS_KEY",
+    "ACCESS_KEY_ID": "ACCESS_KEY_ID",
+    "SECRET_ACCESS_KEY": "SECRET_ACCESS_KEY",
     "REGION": "hangzhou"
   }
 }
