@@ -40,7 +40,9 @@ export async function init(): Promise<void> {
 }
 
 interface IOnPostData {
-  post: Record<string, unknown>
+  post: {
+    content: string
+  }
   data: Record<string, unknown>
 }
 
@@ -82,6 +84,24 @@ type GreenTextResponse = IAliyunResponse<IGreenTextResponse[]>
 
 export async function onPost(data: IOnPostData): Promise<IOnPostData> {
   const content = data.post.content
+  await check(content)
+  return data
+}
+
+interface IOnTopicData {
+  title: string
+  content: string
+}
+
+export async function onTopicPost<T extends IOnTopicData>(data:T): Promise<T> {
+  await Promise.all([
+    check(data.title),
+    check(data.content),
+  ])
+  return data
+}
+
+async function check(content: string): Promise<GreenTextResponse> {
   let res: Response<GreenTextResponse>
   try {
     res = await request.post<GreenTextResponse>({
@@ -99,5 +119,20 @@ export async function onPost(data: IOnPostData): Promise<IOnPostData> {
   if (res.body.data[0].results.some((e) => e.suggestion !== 'pass')) {
     throw new Error('[[green:illegal_content]]')
   }
+  return res.body
+}
+
+interface IUserUpdateProfileData {
+  uid: number
+  data: Record<string, string>
+  fields: string[]
+}
+export async function onUserUpdateProfile<T extends IUserUpdateProfileData>(data: T): Promise<T> {
+  const checkFields = ['username', 'signature', 'aboutme', 'location', 'fullname']
+  for (const field of checkFields) {
+    if (!data.data[field]) continue
+    await check(data.data[field])
+  }
+
   return data
 }

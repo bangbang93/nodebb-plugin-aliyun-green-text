@@ -2,7 +2,12 @@
   "id": "nodebb-plugin-aliyun-green-text",
   "hooks": [
     {"hook": "static:app.load", "method": "init"},
-    { "hook": "filter:post.create", "method": "onPost" }
+    { "hook": "filter:post.create", "method": "onPost" },
+    {"hook": "filter:topic.post", "method": "onTopicPost"},
+    {
+      "hook": "filter:user.updateProfile",
+      "method": "onUserUpdateProfile"
+    }
   ],
   "languages": "languages",
   "defaultLang": "en_US"
