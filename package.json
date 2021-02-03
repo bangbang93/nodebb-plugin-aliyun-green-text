@@ -1,13 +1,14 @@
 {
   "name": "nodebb-plugin-aliyun-green-text",
-  "version": "1.2.0",
+  "version": "1.2.1",
   "main":  "./dist/library.js",
   "repository": {
     "type": "git",
     "url": "git@github.com:bangbang93/nodebb-plugin-aliyun-green-text.git"
   },
   "scripts": {
-    "build": "tsc"
+    "build": "tsc",
+    "prepublishOnly": "npm run build"
   },
   "keywords": [
     "nodebb",
